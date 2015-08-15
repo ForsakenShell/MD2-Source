@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3AEB1BE7-3336-425A-A2BB-A5A60A326C4F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MD2</RootNamespace>
+    <AssemblyName>MD2Manufacturing</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\RimWorld857Win\RimWorld857Win_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MD2Base">
+      <HintPath>..\..\MD2Base\MD2Base\bin\Debug\MD2Base.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\RimWorld857Win\RimWorld857Win_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyLine.cs" />
+    <Compile Include="AssemblyLineProperty.cs" />
+    <Compile Include="AssemblyLineUpgrade.cs" />
+    <Compile Include="AssemblyLineUpgradeDef.cs" />
+    <Compile Include="AssemblyLineUpgrades.cs" />
+    <Compile Include="BillOfMaterials.cs" />
+    <Compile Include="Dialog_UpgradeManager.cs" />
+    <Compile Include="ListExtension.cs" />
+    <Compile Include="ManufacturingControlConsole.cs" />
+    <Compile Include="ManufacturingPlantDialog.cs" />
+    <Compile Include="ManufacturingPlantManager.cs" />
+    <Compile Include="Page_ManufacturingPlant.cs" />
+    <Compile Include="ManufacturingPlantRecipesDef.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderConfig.cs" />
+    <Compile Include="OrderStack.cs" />
+    <Compile Include="Page_LineManagementUI.cs" />
+    <Compile Include="Page_ManufacturingPlantMainUI.cs" />
+    <Compile Include="Page_RecipeManagement.cs" />
+    <Compile Include="PlaceWorker_SingleConsole.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecipeDefExtension.cs" />
+    <Compile Include="RecipeListGenerator.cs" />
+    <Compile Include="ResourceFinder.cs" />
+    <Compile Include="ShoppingList.cs" />
+    <Compile Include="Storage.cs" />
+    <Compile Include="UpgradeManager.cs" />
+    <Compile Include="UpgradeTarget.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\ACER\Desktop\RimWorld857Win\Mods\MD2Manufacturing\Assemblies"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

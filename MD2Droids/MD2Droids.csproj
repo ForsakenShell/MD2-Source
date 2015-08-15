@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0A15EA74-F9C2-4B88-9FF0-598F8EDAA7C3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MD2</RootNamespace>
+    <AssemblyName>MD2Droids</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\RimWorld857Win\RimWorld857Win_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="BackstoriesCore">
+      <HintPath>..\..\Backstories!\Backstories!\bin\Debug\BackstoriesCore.dll</HintPath>
+    </Reference>
+    <Reference Include="MD2Base">
+      <HintPath>..\..\MD2-Source\MD2Base\MD2Base\bin\Debug\MD2Base.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\RimWorld857Win\RimWorld857Win_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Buildings\Building_DraftingTable.cs" />
+    <Compile Include="Buildings\AssemblyStation.cs" />
+    <Compile Include="Comps\CompDroidCharger.cs" />
+    <Compile Include="Comps\CompRepairStationSupplier.cs" />
+    <Compile Include="Defs\BaseCostDef.cs" />
+    <Compile Include="Jobs\AssemblyStuff\AssemblyBill.cs" />
+    <Compile Include="Jobs\AssemblyStuff\AssemblyBillStack.cs" />
+    <Compile Include="Jobs\Drivers\JobDriver_DroidButcher.cs" />
+    <Compile Include="Jobs\Drivers\JobDriver_DroidCremate.cs" />
+    <Compile Include="UI\Dialog_AddBill.cs" />
+    <Compile Include="UI\DraftingTable\Dialog_Blueprint.cs" />
+    <Compile Include="UI\DraftingTable\Dialog_LoadBlueprint.cs" />
+    <Compile Include="UI\DraftingTable\Dialog_SaveBlueprint.cs" />
+    <Compile Include="UI\DraftingTable\Dialog_WorkPackageSelection.cs" />
+    <Compile Include="UI\DraftingTable\Page_Drafting.cs" />
+    <Compile Include="UI\ITab_Assembly.cs" />
+    <Compile Include="Util\Widget.cs" />
+    <Compile Include="Util\Blueprint\BlueprintFiles.cs" />
+    <Compile Include="WorkGivers\WorkGiver_Cremation.cs" />
+    <Compile Include="Util\CremationOperationMode.cs" />
+    <Compile Include="Util\CremationTarget.cs" />
+    <Compile Include="Defs\ThingDef_RepairStation.cs" />
+    <Compile Include="Droids\Alerts\Alert_DroidPowerCriticallyLow.cs" />
+    <Compile Include="Droids\Alerts\Alert_DroidPowerLow.cs" />
+    <Compile Include="Droids\DeactivatedDroid.cs" />
+    <Compile Include="Droids\Managers\SpecialistManager.cs" />
+    <Compile Include="Droids\SpecialistWorkers\CremationWorker.cs" />
+    <Compile Include="Droids\SpecialistWorkers\SpecialistWorker.cs" />
+    <Compile Include="Droids\SpecialistWorkers\SpecialistWorkerBase.cs" />
+    <Compile Include="UI\ITab_CremationControl.cs" />
+    <Compile Include="Jobs\Drivers\JobDriver_ReactivateDroid.cs" />
+    <Compile Include="UI\ITab_Droid_Health.cs" />
+    <Compile Include="Util\Blueprint\Blueprint.cs" />
+    <Compile Include="Droids\DroidCorpse.cs" />
+    <Compile Include="Util\DroidFloatOptionMenuUtility.cs" />
+    <Compile Include="Droids\Managers\BackstoryManager.cs" />
+    <Compile Include="Buildings\Building_RepairStation.cs" />
+    <Compile Include="Droids\Managers\DrawManager.cs" />
+    <Compile Include="Droids\Droid.cs" />
+    <Compile Include="Droids\Managers\DroidUIOverlay.cs" />
+    <Compile Include="Util\ICharge.cs" />
+    <Compile Include="Util\IRepairable.cs" />
+    <Compile Include="Util\ListerDroids.cs" />
+    <Compile Include="Droids\Managers\MetaDataManager.cs" />
+    <Compile Include="Droids\Managers\PartsManager.cs" />
+    <Compile Include="Droids\Managers\UtilityManager.cs" />
+    <Compile Include="Droids\Parts\Part.cs" />
+    <Compile Include="Defs\GraphicDef.cs" />
+    <Compile Include="Util\DroidWorkTypeDefs.cs" />
+    <Compile Include="Jobs\Drivers\JobDriver_DroidCharge.cs" />
+    <Compile Include="Jobs\Drivers\JobDriver_DroidDeactivated.cs" />
+    <Compile Include="Jobs\Drivers\JobDriver_DroidRepair.cs" />
+    <Compile Include="Jobs\Givers\JobGiver_DroidCharge.cs" />
+    <Compile Include="Jobs\Givers\JobGiver_ForDroids.cs" />
+    <Compile Include="UI\OTab_Droid_Work.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Droids\Managers\WorkManager.cs" />
+    <Compile Include="Util\BodyPartRecordUtil.cs" />
+    <Compile Include="Defs\WorkPackageDef.cs" />
+    <Compile Include="WorkGivers\WorkGiver_DroidGotoRepairStation.cs" />
+    <Compile Include="WorkGivers\WorkGiver_ReactivateDroid.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\ACER\Desktop\RimWorld857Win\Mods\MD2Droids\Assemblies"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

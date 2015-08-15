@@ -1,0 +1,22 @@
+﻿Cart loader
+Cart Unloader
+Underground tracks
+Direction switch track
+One-way track
+
+Job to order cart to be manually moved to a track
+Interface to change direction
+
+Separate carts out into different types:
+Cargo hauler
+Pawn transport
+
+Do cart comps:
+ItemContainer
+PawnContainer
+CartPower
+
+Cart and track production:
+Rolling machine for railtracks
+Creosote oil for beds
+Modular cart builder?
