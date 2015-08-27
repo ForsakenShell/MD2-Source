@@ -101,7 +101,7 @@ namespace MD2
                         {
                             this.repeatMode = BillRepeatMode.Forever;
                         }));
-                    Find.LayerStack.Add(new Layer_FloatMenu(list));
+                    Find.WindowStack.Add(new FloatMenu(list));
                 }
                 curY += repeatButSize.y + margin;
 
@@ -367,9 +367,9 @@ namespace MD2
         {
             get
             {
-                if(recipe.workAmount>=0f)
+                if (recipe.workAmount >= 0f)
                 {
-                        return TicksToTime.GetTime(recipe.workAmount);
+                    return TicksToTime.GetTime(recipe.workAmount);
                 }
                 else
                 {

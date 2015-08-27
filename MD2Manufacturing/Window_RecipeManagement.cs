@@ -8,13 +8,13 @@ using Verse;
 
 namespace MD2
 {
-    public class Page_RecipeManagement : Page_ManufacturingPlant
+    public class Window_RecipeManagement : Window_ManufacturingPlant
     {
-        private Layer previousPage;
+        private Window previousPage;
         private List<RecipeDef> recipesList = RecipeListGenerator.AllRecipes().ToList();
         private OrderConfig config;
 
-        public Page_RecipeManagement(AssemblyLine line, Page_LineManagementUI previousPage)
+        public Window_RecipeManagement(AssemblyLine line, Window_LineManagementUI previousPage)
             : base(line, "RecipeManagementHelp".Translate())
         {
             this.previousPage = previousPage;
@@ -53,9 +53,9 @@ namespace MD2
 
         protected static Color InactiveButtonColor = new Color(1, 1, 1, 0.5f);
         protected static Color MouseHoverColor = new Color(0.2588f, 0.2588f, 0.2588f);
-        protected override void FillWindow(Rect inRect)
+        public override void DoWindowContents(Rect inRect)
         {
-            base.FillWindow(inRect);
+            base.DoWindowContents(inRect);
             ////
             Text.Font = GameFont.Medium;
             Text.Anchor = TextAnchor.UpperCenter;
@@ -193,8 +193,6 @@ namespace MD2
 
         private void DrawRecipeList(Rect inRect)
         {
-            bool isTopLayer = Find.LayerStack.TopLayer == this;
-
             Rect availableRecipeMainRect = new Rect(0f, currentYMaxLeft, availableRecipeMainRectSize.x, availableRecipeMainRectSize.y);
             this.bottom = availableRecipeMainRect.yMax;
             this.recipeEntrySize = new Vector2(availableRecipeMainRect.width - 16f, 48f);
@@ -237,7 +235,7 @@ namespace MD2
                 foreach (RecipeDef def in list)
                 {
                     Rect rect2 = new Rect(0f, currentY, this.recipeEntrySize.x, this.recipeEntrySize.y);
-                    if ((rect2.Contains(Event.current.mousePosition) && isTopLayer) || (selectedDef != null && def == selectedDef))
+                    if ((rect2.Contains(Event.current.mousePosition)) || (selectedDef != null && def == selectedDef))
                     {
                         GUI.color = MouseHoverColor;
                         GUI.DrawTexture(rect2, BaseContent.WhiteTex);
@@ -277,10 +275,10 @@ namespace MD2
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.UpperLeft;
             this.Close();
-            Find.LayerStack.Add(previousPage);
+            Find.WindowStack.Add(previousPage);
             if (reload)
             {
-                Page_LineManagementUI page = previousPage as Page_LineManagementUI;
+                Window_LineManagementUI page = previousPage as Window_LineManagementUI;
                 if (page != null)
                 {
                     page.Reload();

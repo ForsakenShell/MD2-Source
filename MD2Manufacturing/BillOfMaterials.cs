@@ -9,7 +9,7 @@ namespace MD2
 {
     public class BillOfMaterials : IExposable
     {
-        public BillOfMaterials(List<ListItem> requiredMaterials, bool instaBuild=false)
+        public BillOfMaterials(List<ListItem> requiredMaterials, bool instaBuild = false)
         {
             this.instaBuild = instaBuild;
             this.requiredMaterials = requiredMaterials;
@@ -18,7 +18,8 @@ namespace MD2
                 acquiredMats.Add(item.thing, 0);
             }
         }
-        public BillOfMaterials():this(new List<ListItem>())
+        public BillOfMaterials()
+            : this(new List<ListItem>())
         {
         }
 
@@ -175,7 +176,7 @@ namespace MD2
 
             foreach (var thing in list)
             {
-                IntVec3 loc = RCellFinder.TradeDropSpot();
+                IntVec3 loc = DropCellFinder.TradeDropSpot();
                 DropPodUtility.MakeDropPodAt(loc, new DropPodInfo
                     {
                         SingleContainedThing = thing,

@@ -34,7 +34,7 @@ namespace MD2
 
         private void TakeNeededItems()
         {
-            foreach(var item in this.foundItems)
+            foreach (var item in this.foundItems)
             {
                 IEnumerable<Thing> things = (
                     from t in ResourceFinder.AllUsableThings
@@ -44,7 +44,7 @@ namespace MD2
                 int remaining = item.amount;
                 acquiredMats.Add(new ListItem(item.thing, item.amount));
 
-                foreach(var thing in things)
+                foreach (var thing in things)
                 {
                     int num = Mathf.Min(remaining, thing.stackCount);
                     thing.TakeFrom(num);
@@ -59,19 +59,19 @@ namespace MD2
         private bool FindItems()
         {
             List<ListItem> list = new List<ListItem>();
-            foreach(var ingredientCount in this.parent.Recipe.ingredients)
+            foreach (var ingredientCount in this.parent.Recipe.ingredients)
             {
-                foreach(var thingDef in ingredientCount.filter.AllowedThingDefs.Where((ThingDef def) => parent.Config.IngredientsFilter.Allows(def)))
+                foreach (var thingDef in ingredientCount.filter.AllowedThingDefs.Where((ThingDef def) => parent.Config.IngredientsFilter.Allows(def)))
                 {
-                    int amount = (int)(ingredientCount.CountUsing(thingDef) * parent.Line.Efficiency);
-                    if(SearchForItem(thingDef, amount))
+                    int amount = (int)(ingredientCount.CountRequiredOfFor(thingDef, parent.Recipe) * parent.Line.Efficiency);
+                    if (SearchForItem(thingDef, amount))
                     {
                         list.Add(new ListItem(thingDef, amount));
                         break;
                     }
                 }
             }
-            if(list.Count==parent.Recipe.ingredients.Count)
+            if (list.Count == parent.Recipe.ingredients.Count)
             {
                 foundItems = list;
                 return true;
@@ -87,10 +87,10 @@ namespace MD2
                 where t.def == def
                 select t).AsEnumerable();
 
-            if(things.Count()>0)
+            if (things.Count() > 0)
             {
-                int count=0;
-                foreach(var thing in things)
+                int count = 0;
+                foreach (var thing in things)
                 {
                     count += thing.stackCount;
                 }
@@ -116,8 +116,8 @@ namespace MD2
 
         public void ExposeData()
         {
-            Scribe_Collections.LookList<ListItem>(ref this.acquiredMats, "acquiredMats",LookMode.Deep);
-            Scribe_Collections.LookList(ref this.foundItems,"foundItems",LookMode.Deep);
+            Scribe_Collections.LookList<ListItem>(ref this.acquiredMats, "acquiredMats", LookMode.Deep);
+            Scribe_Collections.LookList(ref this.foundItems, "foundItems", LookMode.Deep);
         }
 
         public bool HasAllMats

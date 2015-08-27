@@ -57,7 +57,7 @@ namespace MD2
 
             foreach (var thing in list)
             {
-                IntVec3 loc = RCellFinder.TradeDropSpot();
+                IntVec3 loc = DropCellFinder.TradeDropSpot();
                 DropPodUtility.MakeDropPodAt(loc, new DropPodInfo
                     {
                         SingleContainedThing = thing,
@@ -173,7 +173,7 @@ namespace MD2
             foreach (var c in products)
             {
                 //Log.Message(c.Label + c.stackCount.ToString());
-                IntVec3 loc = RCellFinder.TradeDropSpot();
+                IntVec3 loc = DropCellFinder.TradeDropSpot();
                 DropPodUtility.MakeDropPodAt(loc, new DropPodInfo
                 {
                     SingleContainedThing = c,

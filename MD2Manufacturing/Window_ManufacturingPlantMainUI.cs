@@ -9,9 +9,9 @@ using Verse.Sound;
 
 namespace MD2
 {
-    public class Page_ManufacturingPlantMainUI : Page_ManufacturingPlant
+    public class Window_ManufacturingPlantMainUI : Window_ManufacturingPlant
     {
-        public Page_ManufacturingPlantMainUI()
+        public Window_ManufacturingPlantMainUI()
             : base("MainUIHelp".Translate())
         {
         }
@@ -21,9 +21,9 @@ namespace MD2
         private Vector2 interactButtonSize;
         private Vector2 lineManagerButtonSize = new Vector2(120f, 40f);
 
-        protected override void FillWindow(Rect inRect)
+        public override void DoWindowContents(Rect inRect)
         {
-            base.FillWindow(inRect);
+            base.DoWindowContents(inRect);
 
             //First we draw the header
             Text.Font = GameFont.Medium;
@@ -101,7 +101,7 @@ namespace MD2
                             costString += string.Format("{1} {0}\n", item.thing.label, item.amount);
                         }
                     }
-                    Find.LayerStack.Add(new Dialog_Confirm("BuildNewAssemblyLineDialog".Translate(costString, TicksToTime.GetTime((float)AssemblyLine.ConstructionTicksRequired)), delegate
+                    Find.WindowStack.Add(new Dialog_Confirm("BuildNewAssemblyLineDialog".Translate(costString, TicksToTime.GetTime((float)AssemblyLine.ConstructionTicksRequired)), delegate
                     {
                         MPmanager.manager.AddNewAssemblyLine((Game.GodMode && AssemblyLine.Settings.instaBuild));
                     }));
@@ -109,7 +109,7 @@ namespace MD2
                 else
                 {
                     Dialog_Message m = new Dialog_Message("MaximumAssemblyLines".Translate());
-                    Find.LayerStack.Add(m);
+                    Find.WindowStack.Add(m);
                     SoundDefOf.ClickReject.PlayOneShot(SoundInfo.OnCamera());
                 }
             }

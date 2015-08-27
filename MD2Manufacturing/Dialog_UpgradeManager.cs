@@ -7,19 +7,19 @@ using Verse;
 
 namespace MD2
 {
-    public class Dialog_UpgradeManager : ManufacturingPlantDialog
+    public class Dialog_UpgradeManager : Dialog_ManufacturingPlant
     {
         private float padding = 4f;
 
         public Dialog_UpgradeManager(AssemblyLine parent)
-            : base(parent,"Upgrades".Translate(),"UpgradeManagerHelp".Translate(), 600, 600)
+            : base(parent, "Upgrades".Translate(), "UpgradeManagerHelp".Translate(), 600, 600)
         {
             this.doCloseButton = true;
         }
 
-        protected override void FillWindow(Rect inRect)
+        public override void DoWindowContents(Rect inRect)
         {
-            base.FillWindow(inRect);
+            base.DoWindowContents(inRect);
 
             Rect infoPaneRect = new Rect(0, currentY, inRect.width, 60f);
             Rect infoLabelRect = infoPaneRect.ContractedBy(4f);
@@ -42,7 +42,7 @@ namespace MD2
             Widgets.Label(infoLabelRect, info);
             Text.Anchor = TextAnchor.UpperLeft;
 
-            Rect rect = new Rect(0, base.currentY, inRect.width, inRect.height - base.currentY-(CloseButSize.y+padding));
+            Rect rect = new Rect(0, base.currentY, inRect.width, inRect.height - base.currentY - (CloseButSize.y + padding));
             base.currentY += rect.yMax;
             parent.UpgradeManager.OnGUI(rect);
 

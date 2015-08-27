@@ -165,7 +165,7 @@ namespace MD2
             }
         }
 
-        public void OnGUI(float curY, Vector2 lineEntrySize, Vector2 interactButtonSize, Layer page)
+        public void OnGUI(float curY, Vector2 lineEntrySize, Vector2 interactButtonSize, Window page)
         {
             if (underConstruction)
             {
@@ -220,7 +220,7 @@ namespace MD2
                     float num = lineEntrySize.x - 12f - interactButtonSize.x - interactButtonSize.y;
                     //we use the centering float here to centre the buttons. Take away half the height of the button from the float to get the position where the button will be perfectly centered.
                     Rect butRect = new Rect(num, innerRectCentreY - (interactButtonSize.y / 2), interactButtonSize.x, interactButtonSize.y);
-                    //Buttons return a bool if they are clicked, so placing them in an if statement will perform an action when they are clicked. (Remember that the FillWindow() function is called every frame, so this code is constantly being executed)
+                    //Buttons return a bool if they are clicked, so placing them in an if statement will perform an action when they are clicked. (Remember that the DoWindowContents() function is called every frame, so this code is constantly being executed)
                     string butStr;
                     if (constructionPaused)
                         butStr = "MD2Resume".Translate();
@@ -246,10 +246,10 @@ namespace MD2
                         {
                             s = "DeleteAssemblyLineUnderConstruction".Translate();
                         }
-                        Find.LayerStack.Add(new Dialog_Confirm(s, delegate
+                        Find.WindowStack.Add(new Dialog_Confirm(s, delegate
                         {
                             MPmanager.manager.RemoveAssemblyLine(this);
-                            ((Page_ManufacturingPlantMainUI)page).assemblyLines = MPmanager.manager.AssemblyLines;
+                            ((Window_ManufacturingPlantMainUI)page).assemblyLines = MPmanager.manager.AssemblyLines;
                         }));
                     }
                     TooltipHandler.TipRegion(deleteButRect, "MD2Delete".Translate());
@@ -313,19 +313,19 @@ namespace MD2
                 float num = lineEntrySize.x - 12f - interactButtonSize.x - interactButtonSize.y;
                 //we use the centering float here to centre the buttons. Take away half the height of the button from the float to get the position where the button will be perfectly centered.
                 Rect butRect = new Rect(num, innerRectCentreY - (interactButtonSize.y / 2), interactButtonSize.x, interactButtonSize.y);
-                //Buttons return a bool if they are clicked, so placing them in an if statement will perform an action when they are clicked. (Remember that the FillWindow() function is called every frame, so this code is constantly being executed)
+                //Buttons return a bool if they are clicked, so placing them in an if statement will perform an action when they are clicked. (Remember that the DoWindowContents() function is called every frame, so this code is constantly being executed)
                 if (Widgets.TextButton(butRect, "MD2Select".Translate()))
                 {
-                    Find.LayerStack.Add(new Page_LineManagementUI(this, page));
+                    Find.WindowStack.Add(new Window_LineManagementUI(this, page));
                 }
                 Rect deleteButRect = new Rect(num + butRect.width + 5f, innerRectCentreY - (interactButtonSize.y / 2), interactButtonSize.y, interactButtonSize.y);
                 if (Widgets.ImageButton(deleteButRect, ContentFinder<Texture2D>.Get("UI/Buttons/Delete", true)))
                 {
                     string s = "DeleteAssemblyLine".Translate();
-                    Find.LayerStack.Add(new Dialog_Confirm(s, delegate
+                    Find.WindowStack.Add(new Dialog_Confirm(s, delegate
                     {
                         MPmanager.manager.RemoveAssemblyLine(this);
-                        ((Page_ManufacturingPlantMainUI)page).assemblyLines = MPmanager.manager.AssemblyLines;
+                        ((Window_ManufacturingPlantMainUI)page).assemblyLines = MPmanager.manager.AssemblyLines;
                     }));
                 }
                 TooltipHandler.TipRegion(deleteButRect, "MD2Delete".Translate());

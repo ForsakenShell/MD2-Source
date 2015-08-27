@@ -25,12 +25,12 @@ namespace MD2
             Scribe_Collections.LookList<AssemblyLine>(ref this.assemblyLines, "assemblyLines", LookMode.Deep, null);
         }
 
-        public ManufacturingControlConsole console
+        public Building_ControlConsole console
         {
             get
             {
-                if (Find.ListerBuildings.AllBuildingsColonistOfClass<ManufacturingControlConsole>().Count() > 0)
-                    return Find.ListerBuildings.AllBuildingsColonistOfClass<ManufacturingControlConsole>().First();
+                if (Find.ListerBuildings.AllBuildingsColonistOfClass<Building_ControlConsole>().Count() > 0)
+                    return Find.ListerBuildings.AllBuildingsColonistOfClass<Building_ControlConsole>().First();
                 else
                     return null;
             }

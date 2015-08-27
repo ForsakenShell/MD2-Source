@@ -66,7 +66,7 @@ namespace MD2
                 activateSound = SoundDef.Named("Click"),
                 action = delegate
                 {
-                    Find.LayerStack.Add(new Dialog_Confirm(
+                    Find.WindowStack.Add(new Dialog_Confirm(
                         "Are you sure you wish to fill in this fissure?",
                         delegate { DeSpawn(); }));
                 },

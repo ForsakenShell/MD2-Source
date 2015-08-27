@@ -153,9 +153,9 @@ namespace MD2
             get
             {
                 if (storedThingDef == null) return 0;
-                if (storedThingDef.stuffProps != null)
+                if (storedThingDef.smallVolume)
                 {
-                    return (int)(maxStorage / storedThingDef.stuffProps.VolumePerUnit);
+                    return (int)(maxStorage / 0.2f);
                 }
                 return maxStorage;
             }

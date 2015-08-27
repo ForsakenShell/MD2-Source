@@ -7,13 +7,13 @@ using Verse;
 
 namespace MD2
 {
-    public class Page_LineManagementUI : Page_ManufacturingPlant
+    public class Window_LineManagementUI : Window_ManufacturingPlant
     {
-        public Layer previousPage;
+        public Window previousPage;
         private List<Order> orders;
 
-        public Page_LineManagementUI(AssemblyLine line, Layer previous)
-            : base(line,"LineManagementHelp".Translate())
+        public Window_LineManagementUI(AssemblyLine line, Window previous)
+            : base(line, "LineManagementHelp".Translate())
         {
             this.previousPage = previous;
             this.selectedOrder = line.CurrentOrder;
@@ -35,9 +35,9 @@ namespace MD2
         private float curYLeft = 0f;
         private float curYRight = 0f;
 
-        protected override void FillWindow(Rect inRect)
+        public override void DoWindowContents(Rect inRect)
         {
-            base.FillWindow(inRect);
+            base.DoWindowContents(inRect);
 
             bottomLine = CloseButSize.y + margin;
             float m = 15f;
@@ -46,7 +46,7 @@ namespace MD2
             if (Widgets.TextButton(new Rect(0f, inRect.height - buttonSize.y, buttonSize.x, buttonSize.y), "Back"))
             {
                 this.Close();
-                Find.LayerStack.Add(previousPage);
+                Find.WindowStack.Add(previousPage);
             }
 
             Rect labelRect = new Rect(0f, 0f, inRect.width, 30f);
@@ -123,7 +123,7 @@ namespace MD2
                 Rect recipeButtonRect = new Rect(0f, innerOptions.height / 2 - CloseButSize.y / 2, buttonXSize, CloseButSize.y);
                 if (Widgets.TextButton(recipeButtonRect, "AddOrder".Translate()))
                 {
-                    Find.LayerStack.Add(new Page_RecipeManagement(line, this));
+                    Find.WindowStack.Add(new Window_RecipeManagement(line, this));
                 }
 
                 //Options button
@@ -131,10 +131,10 @@ namespace MD2
                 //Widgets.TextButton(optionsButtonRect, "MD2Options".Translate());
 
                 //Upgrades button
-                Rect upgradesButtonRect = new Rect(innerOptions.width-buttonXSize, innerOptions.height /2 - CloseButSize.y/2, buttonXSize, CloseButSize.y);
+                Rect upgradesButtonRect = new Rect(innerOptions.width - buttonXSize, innerOptions.height / 2 - CloseButSize.y / 2, buttonXSize, CloseButSize.y);
                 if (Widgets.TextButton(upgradesButtonRect, "Upgrades".Translate()))
                 {
-                    Find.LayerStack.Add(new Dialog_UpgradeManager(this.line));
+                    Find.WindowStack.Add(new Dialog_UpgradeManager(this.line));
                 }
 
             }
@@ -269,7 +269,7 @@ namespace MD2
                 Rect timeRect = new Rect(innerRect.width / 3 + padding, 0f, innerRect.width / 3 - padding * 2, innerRect.height);
                 string s;
                 if (order.ShoppingList.HasAllMats)
-                    s = "TimeRemaining".Translate() +": " + order.GetTimeRemaining;
+                    s = "TimeRemaining".Translate() + ": " + order.GetTimeRemaining;
                 else
                     s = "AwaitingMaterials".Translate();
                 Widgets.Label(timeRect, s);
@@ -282,7 +282,7 @@ namespace MD2
                 if (order.Config.RepeatMode == RimWorld.BillRepeatMode.RepeatCount)
                     count = order.Config.Cycles.ToString() + "x";
                 if (order.Config.RepeatMode == RimWorld.BillRepeatMode.TargetCount)
-                    count = "MD2Until".Translate()+" " + order.Config.TargetCount.ToString();
+                    count = "MD2Until".Translate() + " " + order.Config.TargetCount.ToString();
                 Widgets.Label(countRect, count);
 
                 //Do the delete button
@@ -362,11 +362,11 @@ namespace MD2
 
         public void Reload()
         {
-            var page = new Page_LineManagementUI(this.line, this.previousPage);
+            var page = new Window_LineManagementUI(this.line, this.previousPage);
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.UpperLeft;
             this.Close();
-            Find.LayerStack.Add(page);
+            Find.WindowStack.Add(page);
         }
     }
 }

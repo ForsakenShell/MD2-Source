@@ -7,28 +7,40 @@ using Verse;
 
 namespace MD2
 {
-    public class ManufacturingPlantDialog : Layer_Window
+    public class Dialog_ManufacturingPlant : Window
     {
         protected AssemblyLine parent;
+        protected string title = "";
+        protected string message = "";
+        protected float currentY = 0f;
+        protected readonly float width;
+        protected readonly float height;
 
-        public ManufacturingPlantDialog(AssemblyLine parent, string title = "", string helpMessage="", float width=600, float height=700)
+        public Dialog_ManufacturingPlant(AssemblyLine parent, string title = "", string helpMessage = "", float width = 600, float height = 700)
         {
-            base.SetCentered(width, height);
-            this.absorbAllInput = true;
-            this.drawPriority = 2000;
+            this.absorbInputAroundWindow = true;
             this.forcePause = false;
-            this.clearNonEditWindows = false;
             this.closeOnEscapeKey = true;
             this.doCloseX = true;
             this.message = helpMessage;
             this.title = title;
             this.parent = parent;
+
+            this.width = width;
+            this.height = height;
+
+            this.draggable = true;
+            this.resizeable = true;
         }
 
-        protected string title = "";
-        protected string message = "";
-        protected float currentY = 0f;
-        protected override void FillWindow(Rect inRect)
+        public override Vector2 InitialWindowSize
+        {
+            get
+            {
+                return base.InitialWindowSize;
+            }
+        }
+        public override void DoWindowContents(Rect inRect)
         {
             if (!title.NullOrEmpty())
             {
@@ -47,7 +59,7 @@ namespace MD2
                 Rect helpRect = new Rect(0, 0, 20, 20);
                 if (Widgets.TextButton(helpRect, "?"))
                 {
-                    Find.LayerStack.Add(new Dialog_Message(message, "Help".Translate()));
+                    Find.WindowStack.Add(new Dialog_Message(message, "Help".Translate()));
                 }
                 TooltipHandler.TipRegion(helpRect, "DialogHelp".Translate());
             }

@@ -8,7 +8,7 @@ using Verse;
 
 namespace MD2
 {
-    public class ManufacturingControlConsole : Building
+    public class Building_ControlConsole : Building
     {
         public static readonly Texture2D Manufacturing_Icon = ContentFinder<Texture2D>.Get("UI/Commands/Manufacturing_Icon");
         public override void SpawnSetup()
@@ -31,7 +31,7 @@ namespace MD2
         {
             if(Power!=null&&Power.PowerOn)
             {
-                Find.LayerStack.Add(new Page_ManufacturingPlantMainUI());
+                Find.WindowStack.Add(new Window_ManufacturingPlantMainUI());
             }
             else
             {
